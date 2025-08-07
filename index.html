@@ -6,7 +6,7 @@
   <title>Login | MarsX</title>
   <style>
     body {
-      background-color: #000; /* Fond noir */
+      background-color: #000; /* Fond entièrement noir */
       font-family: Arial, sans-serif;
       color: white;
       display: flex;
@@ -22,7 +22,7 @@
       padding: 40px;
       border-radius: 15px;
       width: 100%;
-      max-width: 380px;
+      max-width: 400px;
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
       text-align: center;
     }
@@ -52,7 +52,7 @@
       background-color: #333;
       color: white;
       width: 120px;
-      font-size: 14px; /* Texte plus petit */
+      font-size: 14px;
       text-align: center;
       font-weight: bold;
     }
@@ -86,8 +86,7 @@
       font-size: 16px;
     }
 
-    /* Bouton personnalisé */
-    .app-button {
+    button {
       background-color: #d4af37;
       border: none;
       padding: 14px;
@@ -97,12 +96,10 @@
       border-radius: 25px;
       cursor: pointer;
       transition: background-color 0.3s ease;
-      text-align: center; /* Centrer le texte */
-      margin: 20px 0; /* Espacement autour du bouton */
-      width: 100%; /* largeur par défaut */
+      width: 100%;
     }
 
-    .app-button:hover {
+    button:hover {
       background-color: #b3922b;
     }
 
@@ -160,8 +157,7 @@
         <a href="#" style="color: #d4af37;">Forgot password?</a>
       </div>
 
-      <!-- Bouton avec classe .app-button -->
-      <button type="submit" class="app-button">Log In</button>
+      <button type="submit">Log In</button>
       <div id="please-wait">Please wait...</div>
     </form>
 
