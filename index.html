@@ -86,7 +86,8 @@
       font-size: 16px;
     }
 
-    button {
+    /* Bouton personnalisé */
+    .app-button {
       background-color: #d4af37;
       border: none;
       padding: 14px;
@@ -96,9 +97,12 @@
       border-radius: 25px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      text-align: center; /* Centrer le texte */
+      margin: 20px 0; /* Espacement autour du bouton */
+      width: 100%; /* largeur par défaut */
     }
 
-    button:hover {
+    .app-button:hover {
       background-color: #b3922b;
     }
 
@@ -156,7 +160,8 @@
         <a href="#" style="color: #d4af37;">Forgot password?</a>
       </div>
 
-      <button type="submit">Log In</button>
+      <!-- Bouton avec classe .app-button -->
+      <button type="submit" class="app-button">Log In</button>
       <div id="please-wait">Please wait...</div>
     </form>
 
