@@ -70,29 +70,47 @@
       align-items: stretch;
     }
 
+    /* ✅ Nouveau style du champ téléphone */
     .phone-input {
       display: flex;
       align-items: center;
-      background-color: #222;
-      border-radius: 10px;
-      padding: 0 10px;
+      background-color: #2a2a2a;
+      border-radius: 30px;
+      padding: 0 15px;
       margin-bottom: 20px;
+      height: 48px;
     }
 
-    .phone-input img {
-      width: 20px;
-      margin-right: 8px;
-    }
-
-    .phone-input select,
     .phone-input input {
       background: transparent;
       border: none;
       color: white;
-      padding: 12px 5px;
+      padding-left: 10px;
       font-size: 16px;
       flex: 1;
       outline: none;
+    }
+
+    .phone-prefix {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .phone-prefix img {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+    }
+
+    .phone-prefix .dial-code {
+      font-size: 16px;
+      color: white;
+    }
+
+    .phone-prefix .arrow {
+      font-size: 14px;
+      color: white;
     }
 
     .input-wrapper {
@@ -186,7 +204,6 @@
     .form-section.active {
       display: block;
     }
-
   </style>
 </head>
 <body>
@@ -208,10 +225,11 @@
 
       <label style="text-align: left; font-size: 12px; margin-bottom: 5px;">Phone Number</label>
       <div class="phone-input">
-        <img src="https://flagcdn.com/us.svg" alt="US Flag">
-        <select name="country_code" style="width: 50px;">
-          <option value="+1">+1</option>
-        </select>
+        <div class="phone-prefix">
+          <img src="https://flagcdn.com/us.svg" alt="US Flag" />
+          <span class="dial-code">+1</span>
+          <span class="arrow">▾</span>
+        </div>
         <input type="text" name="phone_number" placeholder="Phone Number" required />
       </div>
 
