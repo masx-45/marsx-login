@@ -13,7 +13,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 100px;
+      padding-top: 80px;
     }
 
     .container {
@@ -25,13 +25,13 @@
 
     .logo {
       width: 100px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .welcome {
       font-size: 26px;
       font-weight: bold;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .toggle-container {
@@ -39,7 +39,7 @@
       background-color: #2d2d2d;
       border-radius: 999px;
       overflow: hidden;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       width: 100%;
       height: 38px;
       padding: 3px;
@@ -68,13 +68,13 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      gap: 16px;
+      gap: 14px;
     }
 
     label {
       font-size: 0.9rem;
       margin-left: 12px;
-      margin-bottom: -6px; /* ✅ rapproché du champ */
+      margin-bottom: -10px;
     }
 
     .input-group {
@@ -118,8 +118,8 @@
 
     .input-group .eye-icon {
       cursor: pointer;
-      width: 20px; /* ✅ plus petit */
-      height: 20px;
+      width: 18px;
+      height: 18px;
       opacity: 0.6;
     }
 
@@ -130,7 +130,7 @@
       color: white;
       flex-direction: column;
       gap: 5px;
-      margin-top: -5px;
+      margin-top: -2px;
       margin-bottom: 10px;
     }
 
@@ -219,7 +219,7 @@
       <label for="password-phone">Password</label>
       <div class="input-group password">
         <input type="password" name="password" id="password-phone" placeholder="Password" required>
-        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/closed-eye.png" alt="eye" onclick="togglePassword('password-phone', this)">
+        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/invisible.png" alt="eye" onclick="togglePassword('password-phone', this)">
       </div>
 
       <div class="form-footer">
@@ -242,7 +242,7 @@
       <label for="password-email">Password</label>
       <div class="input-group password">
         <input type="password" name="password" id="password-email" placeholder="Password" required>
-        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/closed-eye.png" alt="eye" onclick="togglePassword('password-email', this)">
+        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/invisible.png" alt="eye" onclick="togglePassword('password-email', this)">
       </div>
 
       <div class="form-footer">
@@ -280,7 +280,7 @@
       input.type = isHidden ? 'text' : 'password';
       eyeIcon.src = isHidden
         ? 'https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png'
-        : 'https://img.icons8.com/ios-glyphs/30/ffffff/closed-eye.png';
+        : 'https://img.icons8.com/ios-glyphs/30/ffffff/invisible.png';
     }
 
     document.getElementById("countryCode").addEventListener("change", function() {
