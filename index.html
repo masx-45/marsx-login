@@ -74,7 +74,7 @@
     label {
       font-size: 0.9rem;
       margin-left: 12px;
-      margin-bottom: 2px;
+      margin-bottom: -6px; /* ✅ rapproché du champ */
     }
 
     .input-group {
@@ -118,7 +118,8 @@
 
     .input-group .eye-icon {
       cursor: pointer;
-      filter: grayscale(100%);
+      width: 20px; /* ✅ plus petit */
+      height: 20px;
       opacity: 0.6;
     }
 
@@ -158,7 +159,6 @@
       display: none;
     }
 
-    /* ✅ CUSTOM CHECKBOX STYLING */
     input[type="checkbox"] {
       -webkit-appearance: none;
       appearance: none;
@@ -194,7 +194,6 @@
 
   <div class="container">
     <img src="immmm.png" alt="MarsX Logo" class="logo" />
-
     <div class="welcome">Welcome To Login</div>
 
     <div class="toggle-container">
@@ -211,15 +210,8 @@
         <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag">
         <select name="countryCode" id="countryCode">
           <option value="+1" data-flag="us">+1</option>
-          <option value="+1" data-flag="ca">+1</option>
           <option value="+33" data-flag="fr">+33</option>
-          <option value="+47" data-flag="no">+47</option>
-          <option value="+34" data-flag="es">+34</option>
-          <option value="+46" data-flag="se">+46</option>
-          <option value="+41" data-flag="ch">+41</option>
-          <option value="+63" data-flag="ph">+63</option>
           <option value="+44" data-flag="gb">+44</option>
-          <option value="+57" data-flag="co">+57</option>
         </select>
         <input type="text" name="phone" placeholder="Phone Number" required>
       </div>
@@ -227,7 +219,7 @@
       <label for="password-phone">Password</label>
       <div class="input-group password">
         <input type="password" name="password" id="password-phone" placeholder="Password" required>
-        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png" alt="eye" onclick="togglePassword('password-phone', this)">
+        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/closed-eye.png" alt="eye" onclick="togglePassword('password-phone', this)">
       </div>
 
       <div class="form-footer">
@@ -250,7 +242,7 @@
       <label for="password-email">Password</label>
       <div class="input-group password">
         <input type="password" name="password" id="password-email" placeholder="Password" required>
-        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png" alt="eye" onclick="togglePassword('password-email', this)">
+        <img class="eye-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/closed-eye.png" alt="eye" onclick="togglePassword('password-email', this)">
       </div>
 
       <div class="form-footer">
@@ -284,13 +276,11 @@
 
     function togglePassword(inputId, eyeIcon) {
       const input = document.getElementById(inputId);
-      if (input.type === 'password') {
-        input.type = 'text';
-        eyeIcon.src = "https://img.icons8.com/ios-glyphs/30/ffffff/closed-eye.png";
-      } else {
-        input.type = 'password';
-        eyeIcon.src = "https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png";
-      }
+      const isHidden = input.type === 'password';
+      input.type = isHidden ? 'text' : 'password';
+      eyeIcon.src = isHidden
+        ? 'https://img.icons8.com/ios-glyphs/30/ffffff/visible--v1.png'
+        : 'https://img.icons8.com/ios-glyphs/30/ffffff/closed-eye.png';
     }
 
     document.getElementById("countryCode").addEventListener("change", function() {
@@ -302,5 +292,3 @@
 
 </body>
 </html>
-
-
